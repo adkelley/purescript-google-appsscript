@@ -21,6 +21,7 @@ module Google.AppsScript.SpreadsheetApp
   , getActiveSheet
   , getSheetId
   , getName
+  , getRange
   , getRange2
   , getRange3
   , getRange4
