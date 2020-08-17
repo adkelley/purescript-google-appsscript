@@ -1,5 +1,10 @@
-/bower_components/
-/node_modules/
-/output/
-/.psci*
-/src/.webpack.js
+bower_components
+node_modules
+.pulp-cache
+output
+generated-docs
+.spago
+.psc-package/
+.psc*
+.purs*
+.psa*
