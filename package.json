@@ -1,0 +1,29 @@
+{
+  "name": "purescript-google-appsscript",
+  "version": "0.1.0",
+  "description": "Utilities for working with Google AppScript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "spago build",
+    "watch": "spago build -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adkelley/purescript-google-appsscript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adkelley/purescript-google-appsscript/issues"
+  },
+  "homepage": "https://github.com/adkelley/purescript-google-appsscript#readme",
+  "devDependencies": {
+    "purescript": "^0.13.8",
+    "spago": "^0.17.0"
+  }
+}
