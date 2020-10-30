@@ -156,4 +156,10 @@ exports.getRange4Impl = function (r, c, rs, cs, sheet) {
     }
 } // Fn5 Row Column Int Int Sheet (GASEff Range)
 
+exports.getSheets = function (sheet) {
+    return function () {
+        return sheet.getSheets();
+    }
+} // Sheet -> GASEff (Array Sheet)
+
 
