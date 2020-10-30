@@ -28,11 +28,11 @@ module Google.AppsScript.SpreadsheetApp
   , setActiveRange
   , getMaxColumns
   , getMaxRows
+  , openById
 ) where
 
 import Data.Function.Uncurried (Fn3, Fn5, Fn4, runFn5, runFn4, runFn3)
 import Foreign (Foreign)
-
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Ui (Ui)
 
@@ -44,8 +44,12 @@ foreign import data Range :: Type
 type Row    = Int
 type Column = Int
 
+-- SpreadsheetApp functions
 foreign import app::GASEff SpreadsheetApp
 foreign import getUi::SpreadsheetApp -> GASEff Ui
+foreign import openById :: SpreadsheetApp -> String -> GASEff Sheet
+foreign import getActiveRange::Sheet -> GASEff Range
+foreign import setActiveRange::Range -> Sheet -> GASEff Range
 
 -- Sheet functions
 foreign import getActiveSheet::SpreadsheetApp -> GASEff Sheet
@@ -59,8 +63,6 @@ foreign import getRange::String -> Sheet -> GASEff Range
 foreign import getRange2Impl::Fn3 Row Column Sheet (GASEff Range)
 foreign import getRange3Impl::Fn4 Row Column Int Sheet (GASEff Range)
 foreign import getRange4Impl::Fn5 Row Column Int Int Sheet (GASEff Range)
-foreign import setActiveRange::Range -> Sheet -> GASEff Range
-foreign import getActiveRange::Sheet -> GASEff Range
 foreign import getColumn::Range -> GASEff Column
 foreign import getRow::Range -> GASEff Row
 foreign import getCellImpl::Fn3 Range Row Column (GASEff Range)

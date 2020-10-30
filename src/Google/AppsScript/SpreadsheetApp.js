@@ -1,5 +1,7 @@
 "use strict";
 
+// SpreadsheetApp functions
+
 exports.app = function () {
    return SpreadsheetApp;
 }
@@ -10,11 +12,29 @@ exports.getUi = function (app) {
     }
 }
 
+exports.openById = function (id) {
+    return function (app) {
+        return function () {
+            return app.openById(id)
+        }
+    }
+} // String -> SpreadsheetApp -> GASEff Spreadsheet
+
 exports.getActiveRange = function (sheet) {
     return function () {
         return sheet.getActiveRange();
     }
 } // SpreadsheetApp -> GASEff Range
+
+exports.setActiveRange = function (range) {
+    return function (sheet) {
+        return function () {
+            return sheet.setActiveRange(range);
+        }
+    }
+} // Range -> Sheet -> GASEff Range
+
+// Spreadsheet functions
 
 exports.getColumn = function (range) {
     return function () {
@@ -106,14 +126,6 @@ exports.getRange = function (range) {
     }
 } // String -> Sheet -> GASEff Range
 
-exports.setActiveRange = function (range) {
-    return function (sheet) {
-        return function () {
-            return sheet.setActiveRange(range);
-        }
-    }
-} // Range -> Sheet -> GASEff Range
-
 exports.getMaxRows = function (sheet) {
     return function () {
         return sheet.getMaxRows();
@@ -143,4 +155,5 @@ exports.getRange4Impl = function (r, c, rs, cs, sheet) {
         return sheet.getRange(r, c, rs, cs);
     }
 } // Fn5 Row Column Int Int Sheet (GASEff Range)
+
 
