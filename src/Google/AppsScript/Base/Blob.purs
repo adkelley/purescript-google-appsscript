@@ -1,4 +1,4 @@
-module Google.AppsScript.Blob
+module Google.AppsScript.Base.Blob
 (
     Blob
 ) where

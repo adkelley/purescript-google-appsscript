@@ -1,4 +1,4 @@
-module Google.AppsScript.Html
+module Google.AppsScript.HTML.HTML
 (
     HtmlService
   , HtmlOutput

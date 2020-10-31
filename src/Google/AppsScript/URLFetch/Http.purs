@@ -39,7 +39,7 @@ import Foreign.Object                  (Object)
 import Data.Functor.Contravariant      ((>$<))
 
 import Google.AppsScript.AppsScript    (GASEff)
-import Google.AppsScript.Blob          (Blob)
+import Google.AppsScript.Base.Blob     (Blob)
 
 foreign import data HTTPResponse :: Type
 foreign import data Bytes :: Type

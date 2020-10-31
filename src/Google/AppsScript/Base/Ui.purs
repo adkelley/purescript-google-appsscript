@@ -18,7 +18,7 @@ import Prelude
 import Data.Function.Uncurried (Fn2, Fn5, Fn4, Fn3, runFn2, runFn5, runFn4, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Base.Types (Ui, Menu)
-import Google.AppsScript.Html (HtmlOutput)
+import Google.AppsScript.HTML.HTML (HtmlOutput)
 
 
 -- | An enum representing predetermined, localized dialog buttons returned by 

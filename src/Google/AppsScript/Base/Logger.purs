@@ -1,10 +1,9 @@
 -- | Module for debug logger
-module Google.AppsScript.Logger
-(
-    clear
-  , getLog
-  , log
-  , debug
+module Google.AppsScript.Base.Logger
+( clear
+, getLog
+, log
+, debug
 ) where
 
 import Prelude

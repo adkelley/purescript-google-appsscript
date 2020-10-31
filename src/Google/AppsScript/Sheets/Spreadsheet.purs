@@ -1,14 +1,11 @@
 module Google.AppsScript.Sheets.Spreadsheet
-( Spreadsheet
-, getSheetId
+( getSheetId
 , setActiveRange
 ) where
 
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Sheets.Types (Range, Sheet)
 
--- | Access and modify Google Sheets files.
-foreign import data Spreadsheet :: Type
 
 -- | Returns the ID of the sheet represented by this object.
 foreign import getSheetId :: Sheet -> GASEff Int

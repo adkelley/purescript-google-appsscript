@@ -1,4 +1,4 @@
-module Google.AppsScript.Properties
+module Google.AppsScript.Properties.Properties
 (
     Properties
   , Props
