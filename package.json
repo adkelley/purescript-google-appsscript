@@ -1,8 +1,7 @@
 {
   "name": "purescript-google-appsscript",
-  "version": "0.1.0",
-  "description": "Utilities for working with Google AppScript",
-  "main": "index.js",
+  "version": "0.2.0",
+  "description": "Library for Google AppScript Workspace Services",
   "directories": {
     "test": "test"
   },
