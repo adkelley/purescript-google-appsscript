@@ -5,8 +5,7 @@ module Google.AppsScript.Sheets.Spreadsheet
 ) where
 
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Sheets.Sheet (Sheet)
-import Google.AppsScript.Sheets.Range (Range)
+import Google.AppsScript.Sheets.Types (Range, Sheet)
 
 -- | Access and modify Google Sheets files.
 foreign import data Spreadsheet :: Type

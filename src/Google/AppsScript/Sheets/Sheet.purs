@@ -1,6 +1,5 @@
 module Google.AppsScript.Sheets.Sheet
-( Sheet
-, activate
+( activate
 , getLastColumn
 , getLastRow
 , getMaxColumns
@@ -15,11 +14,8 @@ module Google.AppsScript.Sheets.Sheet
 import Data.Function.Uncurried (Fn3, Fn5, Fn4, runFn5, runFn4, runFn3)
 
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Sheets.Range (Range)
-import Google.AppsScript.Sheets.Types (Column, Row)
+import Google.AppsScript.Sheets.Types (Column, Range, Row, Sheet)
 
--- | Access and modify spreadsheet sheets.
-foreign import data Sheet :: Type
 
 -- | Activates this sheet. Does not alter the sheet itself, only the parent's 
 -- | notion of the active sheet.

@@ -1,6 +1,5 @@
 module Google.AppsScript.Sheets.Range
-( Range
-, getA1Notation
+( getA1Notation
 , getCell
 , getColumn
 , getFormula
@@ -15,10 +14,7 @@ module Google.AppsScript.Sheets.Range
 import Data.Function.Uncurried (Fn3, runFn3)
 import Foreign (Foreign)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Sheets.Types (Row, Column, Formula)
-
--- | Access and modify spreadsheet ranges.
-foreign import data Range  ::  Type
+import Google.AppsScript.Sheets.Types (Row, Column, Formula, Range)
 
 
 -- | Returns a string description of the range, in A1 notation.

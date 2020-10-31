@@ -1,11 +1,6 @@
 // module Google.AppsScript.Menu
 "use strict";
 
-exports.createAddonMenu = function (ui) {
-    return function () {
-        return ui.createAddonMenu();
-    }
-}
 
 exports.addItemImpl = function (caption, funcName, menu) {
     return function () {

@@ -81,6 +81,12 @@ exports.showSidebarImpl = function (html, ui) {
     }
 }
 
+exports.createAddonMenu = function (ui) {
+    return function () {
+        return ui.createAddonMenu();
+    }
+}
+
 exports.showModalDialogImpl = function (html, title, ui) {
     return function () {
         ui.showModalDialog(html, title);

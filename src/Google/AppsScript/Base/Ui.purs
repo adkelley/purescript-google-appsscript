@@ -1,14 +1,13 @@
-module Google.AppsScript.Ui
-(
-    Ui
-  , Button(..)
-  , ButtonSet(..)
-  , alert
-  , alertButtons
-  , alertTitle
-  , showSidebar
-  , showModalDialog
-  , showModelessDialog
+module Google.AppsScript.Base.Ui
+( Button(..)
+, ButtonSet(..)
+, alert
+, alertButtons
+, alertTitle
+, createAddonMenu
+, showSidebar
+, showModalDialog
+, showModelessDialog
   {-
   , prompt
   , createAddonMenu
@@ -20,8 +19,8 @@ import Data.Function.Uncurried (Fn2, Fn5, Fn4, Fn3,
                                 runFn2, runFn5, runFn4, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Html (HtmlOutput)
+import Google.AppsScript.Base.Types (Ui, Menu)
 
-foreign import data Ui:: Type
 
 data Button = Close | Ok | Cancel | Yes | No
 data ButtonSet = OkAlone | OkCancel | YesNo | YesNoCancel
@@ -32,6 +31,7 @@ foreign import alertBtnsImpl::Fn4  (Array Button)
                                    String ButtonSet Ui (GASEff Button)
 foreign import alertTitleImpl::Fn5 (Array Button)
                                    String String ButtonSet Ui (GASEff Button)
+foreign import createAddonMenu::Ui -> GASEff Menu
 foreign import showSidebarImpl::Fn2 HtmlOutput Ui (GASEff Unit)
 foreign import showModalDialogImpl::Fn3 HtmlOutput String Ui (GASEff Unit)
 foreign import showModelessDialogImpl::Fn3 HtmlOutput String Ui (GASEff Unit)
