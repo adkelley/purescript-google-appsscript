@@ -1,15 +1,9 @@
-// module Google.AppsScript.Html
+// module Google.AppsScript.HTML.Html
 //
 "use strict";
 
 exports.html = function () {
     return HtmlService;
-}
-
-exports.createHtmlOutputFromFileImpl = function (file, html) {
-    return function () {
-        return html.createHtmlOutputFromFile(file);
-    }
 }
 
 exports.setTitleImpl = function (title, html) {
