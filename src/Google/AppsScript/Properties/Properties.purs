@@ -1,46 +1,42 @@
 module Google.AppsScript.Properties.Properties
-(
-    Properties
-  , Props
-  , getDocProps
-  , getScriptProps
-  , getUserProps
-  , delAll
-  , del
-  , keys
-  , getAll
-  , get
-  , setAll
-  , set
+( Props
+, deleteAllProperties
+, deleteProperty
+, getKeys
+, getProperties
+, getProperty
+, setProperties
+, setProperty
 ) where
 
 import Prelude
 import Data.Function.Uncurried (Fn2, Fn3, runFn2, runFn3)
 import Data.Maybe (Maybe)
 import Data.Nullable (toMaybe, Nullable)
-import Foreign.Object               (Object)
-import Google.AppsScript.AppsScript (GASEff)
+import Foreign.Object (Object)
 
-foreign import data Properties :: Type
+import Google.AppsScript.AppsScript (GASEff)
+import Google.AppsScript.Properties.PropertiesService (Properties)
+
 type Props = Object String
 
-foreign import getDocProps::GASEff Properties
-foreign import getScriptProps::GASEff Properties
-foreign import getUserProps::GASEff Properties
+foreign import deleteAllProperties :: Properties -> GASEff Properties
+foreign import deletePropertyImpl ::  Fn2 String Properties (GASEff Properties)
+foreign import getKeys :: Properties -> GASEff (Array String)
+foreign import getProperties :: Properties -> GASEff Props
+foreign import getPropertyImpl ::  Fn2 String Properties (GASEff (Nullable String))
+foreign import setPropertiesImpl ::  Fn2 Props Properties (GASEff Properties)
+foreign import setPropertyImpl ::  Fn3 String String Properties (GASEff Properties)
 
-foreign import delAll::Properties -> GASEff Properties
-foreign import delImpl:: Fn2 String Properties (GASEff Properties)
-foreign import keys::Properties -> GASEff (Array String)
-foreign import getAll::Properties -> GASEff Props
-foreign import getImpl:: Fn2 String Properties (GASEff (Nullable String))
-foreign import setAllImpl:: Fn2 Props Properties (GASEff Properties)
-foreign import setImpl:: Fn3 String String Properties (GASEff Properties)
+setProperty :: String -> String -> Properties -> GASEff Properties
+setProperty k v p = runFn3 setPropertyImpl k v p
 
-set::String -> String -> Properties -> GASEff Properties
-set k v p = runFn3 setImpl k v p
-setAll::Props -> Properties -> GASEff Properties
-setAll pp p = runFn2 setAllImpl pp p
-get::String -> Properties -> GASEff (Maybe String)
-get k p = toMaybe <$> runFn2 getImpl k p
-del::String -> Properties -> GASEff Properties
-del k p = runFn2 delImpl k p
+-- TODO: verify setProperties(properties), setProperties(properties, deleteAllOthers)
+setProperties :: Props -> Properties -> GASEff Properties
+setProperties pp p = runFn2 setPropertiesImpl pp p
+
+getProperty :: String -> Properties -> GASEff (Maybe String)
+getProperty k p = toMaybe <$> runFn2 getPropertyImpl k p
+
+deleteProperty :: String -> Properties -> GASEff Properties
+deleteProperty k p = runFn2 deletePropertyImpl k p
