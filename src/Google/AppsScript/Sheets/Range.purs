@@ -1,21 +1,20 @@
 module Google.AppsScript.Sheets.Range
-( getA1Notation
-, getCell
-, getColumn
-, getFormula
-, getLastColumn
-, getLastRow
-, getNumColumns
-, getNumRows
-, getRow
-, getValue
-) where
+  ( getA1Notation
+  , getCell
+  , getColumn
+  , getFormula
+  , getLastColumn
+  , getLastRow
+  , getNumColumns
+  , getNumRows
+  , getRow
+  , getValue
+  ) where
 
 import Data.Function.Uncurried (Fn3, runFn3)
 import Foreign (Foreign)
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Sheets.Types (Row, Column, Formula, Range)
-
 
 -- | Returns a string description of the range, in A1 notation.
 foreign import getA1Notation :: Range -> GASEff String

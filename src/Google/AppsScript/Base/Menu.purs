@@ -1,15 +1,14 @@
 module Google.AppsScript.Base.Menu
-( addItem
-, addSeparator
-, addSubMenu
-, addToUi
-) where
+  ( addItem
+  , addSeparator
+  , addSubMenu
+  , addToUi
+  ) where
 
 import Prelude (Unit)
 import Data.Function.Uncurried (Fn3, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Base.Types (Menu)
-
 
 foreign import addItemImpl :: Fn3 String String Menu (GASEff Menu)
 

@@ -1,5 +1,5 @@
 module Google.AppsScript.Event
-( Event
-) where
+  ( Event
+  ) where
 
 foreign import data Event :: Type

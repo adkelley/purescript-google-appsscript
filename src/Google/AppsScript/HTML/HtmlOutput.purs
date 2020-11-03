@@ -1,19 +1,21 @@
 module Google.AppsScript.HTML.HtmlOutput
-( html
-, setTitle
-, setWidth
-, setHeight
-, setSandboxMode
-) where
+  ( html
+  , setTitle
+  , setWidth
+  , setHeight
+  , setSandboxMode
+  ) where
 
 import Data.Function.Uncurried (Fn2, runFn2)
-
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.HTML.Types (HtmlOutput, HtmlService)
 
 foreign import html :: GASEff HtmlService
+
 foreign import setTitleImpl :: Fn2 String HtmlOutput (GASEff HtmlOutput)
+
 foreign import setWidthImpl :: Fn2 Int HtmlOutput (GASEff HtmlOutput)
+
 foreign import setHeightImpl :: Fn2 Int HtmlOutput (GASEff HtmlOutput)
 
 -- the only supported mode now is IFRAME

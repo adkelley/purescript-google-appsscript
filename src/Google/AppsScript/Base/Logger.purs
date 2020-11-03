@@ -1,10 +1,10 @@
 -- | Module for debug logger
 module Google.AppsScript.Base.Logger
-( clear
-, getLog
-, log
-, debug
-) where
+  ( clear
+  , getLog
+  , log
+  , debug
+  ) where
 
 import Prelude
 import Google.AppsScript.AppsScript (GASEff)
@@ -23,4 +23,3 @@ foreign import log :: String -> (GASEff Unit)
 -- | Fake pure logging for debug purposes
 debug :: forall a. String -> (Unit -> a) -> a
 debug = debugImpl
-

@@ -1,22 +1,28 @@
 module Google.AppsScript.Sheets.Types
-( Column
-, Formula
-, Id
-, Range
-, Row
-, Sheet
-, Spreadsheet
-, SpreadsheetApp
-) where
+  ( Column
+  , Formula
+  , Id
+  , Range
+  , Row
+  , Sheet
+  , Spreadsheet
+  , SpreadsheetApp
+  ) where
 
-type Column = Int
-type Formula = String
-type Id = String
-type Row = Int
+type Column
+  = Int
 
+type Formula
+  = String
+
+type Id
+  = String
+
+type Row
+  = Int
 
 -- | Access and modify spreadsheet ranges.
-foreign import data Range  ::  Type
+foreign import data Range :: Type
 
 -- | Access and modify spreadsheet sheets.
 foreign import data Sheet :: Type

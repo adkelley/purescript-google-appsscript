@@ -1,11 +1,10 @@
 module Google.AppsScript.Sheets.Spreadsheet
-( getSheetId
-, setActiveRange
-) where
+  ( getSheetId
+  , setActiveRange
+  ) where
 
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Sheets.Types (Range, Sheet)
-
 
 -- | Returns the ID of the sheet represented by this object.
 foreign import getSheetId :: Sheet -> GASEff Int

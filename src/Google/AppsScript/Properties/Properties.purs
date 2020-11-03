@@ -1,32 +1,39 @@
 module Google.AppsScript.Properties.Properties
-( Props
-, deleteAllProperties
-, deleteProperty
-, getKeys
-, getProperties
-, getProperty
-, setProperties
-, setProperty
-) where
+  ( Props
+  , deleteAllProperties
+  , deleteProperty
+  , getKeys
+  , getProperties
+  , getProperty
+  , setProperties
+  , setProperty
+  ) where
 
 import Prelude
 import Data.Function.Uncurried (Fn2, Fn3, runFn2, runFn3)
 import Data.Maybe (Maybe)
 import Data.Nullable (toMaybe, Nullable)
 import Foreign.Object (Object)
-
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Properties.PropertiesService (Properties)
 
-type Props = Object String
+type Props
+  = Object String
 
+-- TODO: Document these FFs
 foreign import deleteAllProperties :: Properties -> GASEff Properties
-foreign import deletePropertyImpl ::  Fn2 String Properties (GASEff Properties)
+
+foreign import deletePropertyImpl :: Fn2 String Properties (GASEff Properties)
+
 foreign import getKeys :: Properties -> GASEff (Array String)
+
 foreign import getProperties :: Properties -> GASEff Props
-foreign import getPropertyImpl ::  Fn2 String Properties (GASEff (Nullable String))
-foreign import setPropertiesImpl ::  Fn2 Props Properties (GASEff Properties)
-foreign import setPropertyImpl ::  Fn3 String String Properties (GASEff Properties)
+
+foreign import getPropertyImpl :: Fn2 String Properties (GASEff (Nullable String))
+
+foreign import setPropertiesImpl :: Fn2 Props Properties (GASEff Properties)
+
+foreign import setPropertyImpl :: Fn3 String String Properties (GASEff Properties)
 
 setProperty :: String -> String -> Properties -> GASEff Properties
 setProperty k v p = runFn3 setPropertyImpl k v p

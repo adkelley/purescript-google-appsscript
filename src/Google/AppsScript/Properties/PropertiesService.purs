@@ -1,9 +1,9 @@
 module Google.AppsScript.Properties.PropertiesService
-( Properties
-, getDocumentProperties
-, getScriptProperties
-, getUserProperties
-) where
+  ( Properties
+  , getDocumentProperties
+  , getScriptProperties
+  , getUserProperties
+  ) where
 
 import Google.AppsScript.AppsScript (GASEff)
 

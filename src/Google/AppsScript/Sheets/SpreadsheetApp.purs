@@ -1,15 +1,14 @@
 module Google.AppsScript.Sheets.SpreadsheetApp
-( app
-, getActiveRange
-, getUi
-, openById
-, getActiveSheet
-) where
+  ( app
+  , getActiveRange
+  , getUi
+  , openById
+  , getActiveSheet
+  ) where
 
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Base.Types (Ui)
 import Google.AppsScript.Sheets.Types (Id, Range, Sheet, SpreadsheetApp)
-
 
 -- | Access and create Google Sheets files
 foreign import app :: GASEff SpreadsheetApp
