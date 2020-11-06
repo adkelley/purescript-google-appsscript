@@ -87,6 +87,14 @@ exports.createAddonMenu = function (ui) {
     }
 }
 
+exports.createMenu = function (caption) {
+    return function (ui) {
+        return function () {
+            return ui.createMenu(caption);
+        }
+    }
+}
+
 exports.showModalDialogImpl = function (html, title, ui) {
     return function () {
         ui.showModalDialog(html, title);

@@ -14,9 +14,10 @@ module Google.AppsScript.Base.Ui
   ) where
 
 import Prelude
+
 import Data.Function.Uncurried (Fn2, Fn5, Fn4, Fn3, runFn2, runFn5, runFn4, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Base.Types (Ui, Menu)
+import Google.AppsScript.Base.Types (Caption, Ui, Menu)
 import Google.AppsScript.HTML.Types (HtmlOutput)
 
 -- | An enum representing predetermined, localized dialog buttons returned by 
@@ -46,6 +47,9 @@ foreign import alertTitleImpl :: Fn5 (Array Button) String String ButtonSet Ui (
 -- | Creates a builder that can be used to insert a sub-menu into the editor's 
 -- | Add-on menu.
 foreign import createAddonMenu :: Ui -> GASEff Menu
+
+-- | Creates a builder that can be used to add a menu to the editor's user interface. 
+foreign import createMenu :: Caption -> Ui -> GASEff Menu
 
 foreign import showSidebarImpl :: Fn2 HtmlOutput Ui (GASEff Unit)
 

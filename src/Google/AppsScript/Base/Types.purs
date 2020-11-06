@@ -1,6 +1,8 @@
 module Google.AppsScript.Base.Types
   ( Ui
   , Menu
+  , Caption
+  , FunctionName
   ) where
 
 -- | An instance of the user-interface environment for a Google App that 
@@ -9,3 +11,9 @@ foreign import data Ui :: Type
 
 -- | A custom menu in an instance of the user interface for a Google App. 
 foreign import data Menu :: Type
+
+type Caption
+  = String
+
+type FunctionName
+  = String

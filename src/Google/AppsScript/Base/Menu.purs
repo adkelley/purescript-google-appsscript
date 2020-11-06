@@ -5,10 +5,10 @@ module Google.AppsScript.Base.Menu
   , addToUi
   ) where
 
-import Prelude (Unit)
 import Data.Function.Uncurried (Fn3, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Base.Types (Menu)
+import Google.AppsScript.Base.Types (Caption, FunctionName, Menu)
+import Prelude (Unit)
 
 foreign import addItemImpl :: Fn3 String String Menu (GASEff Menu)
 
@@ -23,5 +23,5 @@ foreign import addSubMenu :: Menu -> Menu -> GASEff Menu
 
 -- | Adds an item to the menu. The label for a menu item should be in sentence 
 -- | case (only the first word capitalized).
-addItem :: String -> String -> Menu -> GASEff Menu
+addItem :: Caption -> FunctionName -> Menu -> GASEff Menu
 addItem cap funcname menu = runFn3 addItemImpl cap funcname menu

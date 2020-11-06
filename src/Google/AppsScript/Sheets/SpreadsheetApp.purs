@@ -4,11 +4,12 @@ module Google.AppsScript.Sheets.SpreadsheetApp
   , getUi
   , openById
   , getActiveSheet
+  , getActiveSpreadsheet
   ) where
 
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Base.Types (Ui)
-import Google.AppsScript.Sheets.Types (Id, Range, Sheet, SpreadsheetApp)
+import Google.AppsScript.Sheets.Types (Id, Range, Sheet, Spreadsheet, SpreadsheetApp)
 
 -- | Access and create Google Sheets files
 foreign import app :: GASEff SpreadsheetApp
@@ -24,6 +25,10 @@ foreign import openById :: Id -> SpreadsheetApp -> GASEff Sheet
 -- | active range.
 -- | TODO: Convert the return type to GASEff (Maybe Range)
 foreign import getActiveRange :: Sheet -> GASEff Range
+
+-- | Returns the currently active spreadsheet, or null if there is none.
+-- | TODO: Convert the return type to GASEff (Maybe Spreadsheet)
+foreign import getActiveSpreadsheet :: SpreadsheetApp -> GASEff Spreadsheet
 
 -- | Sets the specified range as the active range, with the top left cell in the 
 -- | range as the current cell.
