@@ -5,6 +5,7 @@ module Google.AppsScript.Base.Ui
   , alertButtons
   , alertTitle
   , createAddonMenu
+  , createMenu
   , showSidebar
   , showModalDialog
   , showModelessDialog
