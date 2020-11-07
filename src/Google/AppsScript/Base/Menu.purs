@@ -3,12 +3,16 @@ module Google.AppsScript.Base.Menu
   , addSeparator
   , addSubMenu
   , addToUi
+  , Menu
   ) where
 
 import Data.Function.Uncurried (Fn3, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Base.Types (Caption, FunctionName, Menu)
+import Google.AppsScript.Base.Types (Caption, FunctionName)
 import Prelude (Unit)
+
+-- | A custom menu in an instance of the user interface for a Google App. 
+foreign import data Menu :: Type
 
 foreign import addItemImpl :: Fn3 String String Menu (GASEff Menu)
 

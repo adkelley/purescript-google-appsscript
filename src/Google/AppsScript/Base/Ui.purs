@@ -10,16 +10,24 @@ module Google.AppsScript.Base.Ui
   , showSidebar
   , showModalDialog
   , showModelessDialog
+  , Ui
   {-
   , prompt
   -}
   ) where
 
 import Prelude
+
 import Data.Function.Uncurried (Fn2, Fn5, Fn4, Fn3, runFn2, runFn5, runFn4, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Base.Types (Button(..), ButtonSet, Caption, Menu, PromptResponse, Ui)
+import Google.AppsScript.Base.PromptResponse (PromptResponse)
+import Google.AppsScript.Base.Menu (Menu)
+import Google.AppsScript.Base.Types (Button(..), ButtonSet, Caption)
 import Google.AppsScript.HTML.Types (HtmlOutput)
+
+-- | An instance of the user-interface environment for a Google App that 
+-- | allows the script to add features like menus, dialogs, and sidebars.
+foreign import data Ui :: Type
 
 foreign import alertImpl :: Fn3 (Array Button) String Ui (GASEff Button)
 
