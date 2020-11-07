@@ -1,11 +1,12 @@
 module Google.AppsScript.Base.Ui
-  ( Button(..)
-  , ButtonSet(..)
-  , alert
+  ( alert
   , alertButtons
   , alertTitle
   , createAddonMenu
   , createMenu
+  , prompt
+  , promptButtons
+  , promptTitle
   , showSidebar
   , showModalDialog
   , showModelessDialog
@@ -15,33 +16,14 @@ module Google.AppsScript.Base.Ui
   ) where
 
 import Prelude
-
 import Data.Function.Uncurried (Fn2, Fn5, Fn4, Fn3, runFn2, runFn5, runFn4, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Base.Types (Caption, Ui, Menu)
+import Google.AppsScript.Base.Types (Button(..), ButtonSet, Caption, Menu, PromptResponse, Ui)
 import Google.AppsScript.HTML.Types (HtmlOutput)
-
--- | An enum representing predetermined, localized dialog buttons returned by 
--- | an alert or PromptResponse.getSelectedButton() to indicate which button 
--- | in a dialog the user clicked.
-data Button
-  = Close
-  | Ok
-  | Cancel
-  | Yes
-  | No
-
--- | An enum representing predetermined, localized sets of one or more dialog 
--- | buttons that can be added to an alert or a prompt.
-data ButtonSet
-  = OkAlone
-  | OkCancel
-  | YesNo
-  | YesNoCancel
 
 foreign import alertImpl :: Fn3 (Array Button) String Ui (GASEff Button)
 
-foreign import alertBtnsImpl :: Fn4 (Array Button) String ButtonSet Ui (GASEff Button)
+foreign import alertButtonsImpl :: Fn4 (Array Button) String ButtonSet Ui (GASEff Button)
 
 foreign import alertTitleImpl :: Fn5 (Array Button) String String ButtonSet Ui (GASEff Button)
 
@@ -58,23 +40,32 @@ foreign import showModalDialogImpl :: Fn3 HtmlOutput String Ui (GASEff Unit)
 
 foreign import showModelessDialogImpl :: Fn3 HtmlOutput String Ui (GASEff Unit)
 
-btns :: Array Button
-btns = [ Close, Ok, Cancel, Yes, No ]
+-- | Opens an input dialog box in the user's editor with the given message and an "OK" button.
+foreign import prompt :: String -> Ui -> PromptResponse
+
+-- | Opens an input dialog box in the user's editor with the given message and set of buttons. 
+foreign import promptButtons :: (Array Button) -> String -> Ui -> PromptResponse
+
+-- | Opens an input dialog box in the user's editor with the given title, message, and set of buttons. 
+foreign import promptTitle :: (Array Button) -> String -> Ui -> PromptResponse
+
+buttons :: Array Button
+buttons = [ Close, Ok, Cancel, Yes, No ]
 
 -- | Opens a dialog box in the user's editor with the given message and an "OK" 
 -- | button.
 alert :: String -> Ui -> GASEff Button
-alert msg ui = runFn3 alertImpl btns msg ui
+alert msg ui = runFn3 alertImpl buttons msg ui
 
 -- | Opens a dialog box in the user's editor with the given message and set of 
 -- | buttons.
 alertButtons :: String -> ButtonSet -> Ui -> GASEff Button
-alertButtons msg btnset ui = runFn4 alertBtnsImpl btns msg btnset ui
+alertButtons msg buttonset ui = runFn4 alertButtonsImpl buttons msg buttonset ui
 
 -- | Opens a dialog box in the user's editor with the given title, message, and 
 -- | set of buttons.
 alertTitle :: String -> String -> ButtonSet -> Ui -> GASEff Button
-alertTitle title msg btnset ui = runFn5 alertTitleImpl btns title msg btnset ui
+alertTitle title msg buttonset ui = runFn5 alertTitleImpl buttons title msg buttonset ui
 
 -- | Opens a sidebar in the user's editor with custom client-side content.
 showSidebar :: HtmlOutput -> Ui -> GASEff Unit

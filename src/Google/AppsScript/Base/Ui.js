@@ -20,7 +20,7 @@ exports.alertImpl = function (buttons, msg, ui) {
     }
 }
 
-function btnset(ui, btns) {
+function buttonSet(ui, btns) {
     switch (btns.constructor.name) {
         case 'OkCancel':
             return ui.ButtonSet.OK_CANCEL;
@@ -38,9 +38,9 @@ function btnset(ui, btns) {
     }
 }
 
-exports.alertBtnsImpl = function (buttons, msg, btns, ui) {
+exports.alertButtonsImpl = function (buttons, msg, btns, ui) {
     return function () {
-        switch (ui.alert(msg, btnset(ui, btns))) {
+        switch (ui.alert(msg, buttonSet(ui, btns))) {
             case ui.Button.CLOSE:
                 return buttons[0];
             case ui.Button.OK:
@@ -87,13 +87,12 @@ exports.createAddonMenu = function (ui) {
     }
 }
 
-exports.createMenu = function (caption) {
-    return function (ui) {
-        return function () {
-            return ui.createMenu(caption);
-        }
-    }
-}
+exports.createMenu = caption => ui => ui.createMenu(caption);
+
+exports.prompt = prompt => ui => ui.prompt(prompt);
+exports.promptButtons = prompt => buttons => ui => ui.prompt(prompt, buttons);
+exports.promptTitle = title => prompt => buttons => ui => ui.prompt(title, prompt, buttons);
+
 
 exports.showModalDialogImpl = function (html, title, ui) {
     return function () {
