@@ -89,9 +89,9 @@ exports.createAddonMenu = function (ui) {
 
 exports.createMenu = caption => ui => ui.createMenu(caption);
 
-exports.prompt = prompt => ui => ui.prompt(prompt);
-exports.promptButtons = prompt => buttons => ui => ui.prompt(prompt, buttons);
-exports.promptTitle = title => prompt => buttons => ui => ui.prompt(title, prompt, buttons);
+//exports.prompt = prompt => ui => ui.prompt(prompt);
+//exports.promptButtons = prompt => buttons => ui => ui.prompt(prompt, buttons);
+//exports.promptTitle = title => prompt => buttons => ui => ui.prompt(title, prompt, buttons);
 
 
 exports.showModalDialogImpl = function (html, title, ui) {

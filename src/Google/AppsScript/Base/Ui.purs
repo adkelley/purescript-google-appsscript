@@ -4,9 +4,9 @@ module Google.AppsScript.Base.Ui
   , alertTitle
   , createAddonMenu
   , createMenu
-  , prompt
-  , promptButtons
-  , promptTitle
+  --, prompt
+  --, promptButtons
+  --, promptTitle
   , showSidebar
   , showModalDialog
   , showModelessDialog
@@ -20,8 +20,8 @@ import Prelude
 
 import Data.Function.Uncurried (Fn2, Fn5, Fn4, Fn3, runFn2, runFn5, runFn4, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Base.PromptResponse (PromptResponse)
 import Google.AppsScript.Base.Menu (Menu)
+import Google.AppsScript.Base.PromptResponse (PromptResponse)
 import Google.AppsScript.Base.Types (Button(..), ButtonSet, Caption)
 import Google.AppsScript.HTML.Types (HtmlOutput)
 
@@ -49,13 +49,13 @@ foreign import showModalDialogImpl :: Fn3 HtmlOutput String Ui (GASEff Unit)
 foreign import showModelessDialogImpl :: Fn3 HtmlOutput String Ui (GASEff Unit)
 
 -- | Opens an input dialog box in the user's editor with the given message and an "OK" button.
-foreign import prompt :: String -> Ui -> PromptResponse
+--foreign import prompt :: String -> Ui -> GASEff PromptResponse
 
 -- | Opens an input dialog box in the user's editor with the given message and set of buttons. 
-foreign import promptButtons :: (Array Button) -> String -> Ui -> PromptResponse
+--foreign import promptButtons :: String -> Ui -> GASEff PromptResponse
 
 -- | Opens an input dialog box in the user's editor with the given title, message, and set of buttons. 
-foreign import promptTitle :: (Array Button) -> String -> Ui -> PromptResponse
+--foreign import promptTitle :: (Array Button) -> String -> Ui -> GASEff PromptResponse
 
 buttons :: Array Button
 buttons = [ Close, Ok, Cancel, Yes, No ]
@@ -74,6 +74,9 @@ alertButtons msg buttonset ui = runFn4 alertButtonsImpl buttons msg buttonset ui
 -- | set of buttons.
 alertTitle :: String -> String -> ButtonSet -> Ui -> GASEff Button
 alertTitle title msg buttonset ui = runFn5 alertTitleImpl buttons title msg buttonset ui
+
+--prompt :: String -> Ui -> GASEff PromptResponse
+--prompt message ui = promptImpl 
 
 -- | Opens a sidebar in the user's editor with custom client-side content.
 showSidebar :: HtmlOutput -> Ui -> GASEff Unit
