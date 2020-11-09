@@ -42,19 +42,24 @@ foreign import getName :: Sheet -> GASEff String
 
 foreign import getRange :: String -> Sheet -> GASEff Range
 
+-- | Returns the range with the top left cell at the given coordinates.
+getRange2 :: Row -> Column -> Sheet -> GASEff Range
+getRange2 row col sheet = runFn3 getRange2Impl row col sheet
+
 foreign import getRange2Impl :: Fn3 Row Column Sheet (GASEff Range)
 
+-- | Returns the range with the top left cell at the given coordinates, and with 
+-- | the given number of rows.
+getRange3 :: Row -> Column -> Int -> Sheet -> GASEff Range
+getRange3 row col numRows sheet = runFn4 getRange3Impl row col numRows sheet
+
 foreign import getRange3Impl :: Fn4 Row Column Int Sheet (GASEff Range)
+
+-- | Returns the range with the top left cell at the given coordinates with 
+-- | the given number of rows and columns.
+getRange4 :: Row -> Column -> Int -> Int -> Sheet -> GASEff Range
+getRange4 row col numRows numCols sheet = runFn5 getRange4Impl row col numRows numCols sheet
 
 foreign import getRange4Impl :: Fn5 Row Column Int Int Sheet (GASEff Range)
 
 foreign import setName :: String -> Sheet -> GASEff Sheet
-
-getRange2 :: Row -> Column -> Sheet -> GASEff Range
-getRange2 row col sheet = runFn3 getRange2Impl row col sheet
-
-getRange3 :: Row -> Column -> Int -> Sheet -> GASEff Range
-getRange3 row col rows sheet = runFn4 getRange3Impl row col rows sheet
-
-getRange4 :: Row -> Column -> Int -> Int -> Sheet -> GASEff Range
-getRange4 row col rows cols sheet = runFn5 getRange4Impl row col rows cols sheet
