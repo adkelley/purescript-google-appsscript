@@ -1,5 +1,6 @@
 module Google.AppsScript.Sheets.Sheet
   ( activate
+  , copyTo
   , getLastColumn
   , getLastRow
   , getMaxColumns
@@ -14,11 +15,15 @@ module Google.AppsScript.Sheets.Sheet
 
 import Data.Function.Uncurried (Fn3, Fn5, Fn4, runFn5, runFn4, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Sheets.Types (Column, Range, Row, Sheet)
+import Google.AppsScript.Sheets.Types (Column, Range, Row, Spreadsheet, Sheet)
 
 -- | Activates this sheet. Does not alter the sheet itself, only the parent's 
 -- | notion of the active sheet.
 foreign import activate :: Sheet -> GASEff Sheet
+
+-- | Copies the sheet to a given spreadsheet, which can be the same spreadsheet as the source. 
+-- | The copied sheet is named "Copy of [original name]".
+foreign import copyTo :: Sheet -> Spreadsheet -> GASEff Sheet
 
 -- | Returns the position of the last column that has content.
 foreign import getLastColumn :: Range -> GASEff Column

@@ -1,16 +1,29 @@
 module Google.AppsScript.Sheets.Spreadsheet
   ( getSheetId
+  , getSheetByName
   , getSheets
   , setActiveRange
   , insertSheet
   , insertSheetIndex
   ) where
 
+import Data.Maybe (Maybe(..))
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Sheets.Types (Range, Sheet, Sheets, Spreadsheet)
 
 -- | Returns the ID of the sheet represented by this object.
 foreign import getSheetId :: Sheet -> GASEff Int
+
+-- | Returns a sheet with the given name.
+getSheetByName :: String -> Spreadsheet -> GASEff (Maybe Sheet)
+getSheetByName = getSheetByNameImpl Just Nothing
+
+foreign import getSheetByNameImpl
+  :: (Sheet -> Maybe Sheet)
+  -> Maybe Sheet
+  -> String
+  -> Spreadsheet
+  -> GASEff (Maybe Sheet)
 
 -- | Gets all the sheets in this spreadsheet.
 foreign import getSheets :: Spreadsheet -> GASEff Sheets

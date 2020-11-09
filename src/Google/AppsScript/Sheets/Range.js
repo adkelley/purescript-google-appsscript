@@ -59,3 +59,11 @@ exports.getFormula = function (range) {
         return range.getFormula();
     }
 }
+
+exports.setStringValue = function (string) {
+    return function (range) {
+        return function () {
+            return range.setValue(string);
+        }
+    }
+}

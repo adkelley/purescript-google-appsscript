@@ -6,6 +6,14 @@ exports.activate = function (sheet) {
     }
 } // Sheet -> GASEff Sheet
 
+exports.copyTo = function (sheet) {
+    return function (spreadsheet) {
+        return function () {
+            return sheet.copyTo(spreadsheet);
+        }
+    }
+} // Sheet -> Spreadsheet -> Sheet
+
 exports.getLastColumn = function (range) {
     return function () {
         return range.getLastColumn();

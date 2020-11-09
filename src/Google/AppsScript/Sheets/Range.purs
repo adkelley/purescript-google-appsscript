@@ -9,6 +9,7 @@ module Google.AppsScript.Sheets.Range
   , getNumRows
   , getRow
   , getValue
+  , setStringValue
   ) where
 
 import Data.Function.Uncurried (Fn3, runFn3)
@@ -18,8 +19,6 @@ import Google.AppsScript.Sheets.Types (Row, Column, Formula, Range)
 
 -- | Returns a string description of the range, in A1 notation.
 foreign import getA1Notation :: Range -> GASEff String
-
-foreign import getCellImpl :: Fn3 Range Row Column (GASEff Range)
 
 -- | Returns the starting column position for this range.
 foreign import getColumn :: Range -> GASEff Column
@@ -46,6 +45,10 @@ foreign import getRow :: Range -> GASEff Row
 -- | Returns the value of the top-left cell in the range.
 foreign import getValue :: Range -> GASEff Foreign
 
+foreign import setStringValue :: String -> Range -> GASEff Range
+
 -- | Returns a given cell within a range.
 getCell :: Row -> Column -> Range -> GASEff Range
 getCell row col range = runFn3 getCellImpl range row col
+
+foreign import getCellImpl :: Fn3 Range Row Column (GASEff Range)
