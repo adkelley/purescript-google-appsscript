@@ -87,11 +87,17 @@ exports.createAddonMenu = function (ui) {
     }
 }
 
-exports.createMenu = caption => ui => ui.createMenu(caption);
+// String -> Ui -> GASEff Menu
+exports.createMenu = caption => ui => () => ui.createMenu(caption);
 
-//exports.prompt = prompt => ui => ui.prompt(prompt);
-//exports.promptButtons = prompt => buttons => ui => ui.prompt(prompt, buttons);
-//exports.promptTitle = title => prompt => buttons => ui => ui.prompt(title, prompt, buttons);
+// String -> Ui -> GASEff PromptResponse
+exports.prompt = prompt => ui => () => ui.prompt(prompt);
+
+// String -> ButtonSet -> Ui -> GASEff PromptResponse
+exports.promptButtons = prompt => buttons => ui => () => ui.prompt(prompt, buttonSet(ui, buttons));
+
+// String -> ButtonSet -> Ui -> GASEff PromptResponse
+exports.promptTitle = title => prompt => buttons => ui => () => ui.prompt(title, prompt, buttonSet(ui, buttons));
 
 
 exports.showModalDialogImpl = function (html, title, ui) {

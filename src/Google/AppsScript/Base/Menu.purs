@@ -3,21 +3,17 @@ module Google.AppsScript.Base.Menu
   , addSeparator
   , addSubMenu
   , addToUi
-  , Menu
   ) where
 
 import Data.Function.Uncurried (Fn3, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Base.Types (Caption, FunctionName)
-import Prelude (Unit)
-
--- | A custom menu in an instance of the user interface for a Google App. 
-foreign import data Menu :: Type
+import Google.AppsScript.Base.Types (Caption, FunctionName, Menu)
+import Prelude (Void)
 
 foreign import addItemImpl :: Fn3 String String Menu (GASEff Menu)
 
 -- | Inserts the menu into the instance of the editor's user interface.
-foreign import addToUi :: Menu -> GASEff Unit
+foreign import addToUi :: Menu -> GASEff Void
 
 -- | Adds a visual separator to the menu.
 foreign import addSeparator :: Menu -> GASEff Menu

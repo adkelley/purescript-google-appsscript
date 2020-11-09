@@ -8,8 +8,8 @@ module Google.AppsScript.Sheets.SpreadsheetApp
   ) where
 
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Base.Ui (Ui)
 import Google.AppsScript.Sheets.Types (Id, Range, Sheet, Spreadsheet, SpreadsheetApp)
+import Google.AppsScript.Base.Types (Ui)
 
 -- | Access and create Google Sheets files
 foreign import app :: GASEff SpreadsheetApp

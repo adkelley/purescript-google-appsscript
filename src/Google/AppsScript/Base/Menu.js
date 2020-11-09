@@ -10,10 +10,9 @@ exports.addItemImpl = function (caption, funcName, menu) {
 
 exports.addToUi = function (menu) {
     return function () {
-        menu.addToUi();
-        return {};
+       return menu.addToUi();
     }
-}
+} // Menu -> GASEff Void
 
 exports.addSubMenu = function (submenu) {
     return function (menu) {
