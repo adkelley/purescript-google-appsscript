@@ -13,3 +13,9 @@ exports.getSheetId = function (sheet) {
         return sheet.getSheetId();
     }
 } //Sheet -> GASEff Int
+
+exports.getSheets = function (spreadSheet) {
+    return function () {
+        return spreadSheet.getSheets();
+    }
+}

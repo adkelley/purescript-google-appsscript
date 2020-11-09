@@ -5,6 +5,7 @@ module Google.AppsScript.Sheets.Types
   , Range
   , Row
   , Sheet
+  , Sheets
   , Spreadsheet
   , SpreadsheetApp
   ) where
@@ -27,8 +28,11 @@ foreign import data Range :: Type
 -- | Access and modify spreadsheet sheets.
 foreign import data Sheet :: Type
 
+type Sheets = Array Sheet
+
 -- | Access and modify Google Sheets files.
 foreign import data Spreadsheet :: Type
 
 -- | Access and create Google Sheets files
 foreign import data SpreadsheetApp :: Type
+

@@ -15,5 +15,7 @@ foreign import getResponseText :: PromptResponse -> GASEff String
 
 foreign import getSelectedButtonImpl :: Fn3 (Array Button) PromptResponse Ui (GASEff Button)
 
+-- | Gets the button that the user clicked to dismiss the dialog. Note, in constrast to the 
+-- | original GAS method, this function requires the Ui parameter
 getSelectedButton :: PromptResponse -> Ui -> GASEff Button
 getSelectedButton promptResponse ui = runFn3 getSelectedButtonImpl buttons promptResponse ui
