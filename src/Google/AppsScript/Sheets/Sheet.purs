@@ -9,6 +9,7 @@ module Google.AppsScript.Sheets.Sheet
   , getRange2
   , getRange3
   , getRange4
+  , setName
   ) where
 
 import Data.Function.Uncurried (Fn3, Fn5, Fn4, runFn5, runFn4, runFn3)
@@ -41,6 +42,8 @@ foreign import getRange2Impl :: Fn3 Row Column Sheet (GASEff Range)
 foreign import getRange3Impl :: Fn4 Row Column Int Sheet (GASEff Range)
 
 foreign import getRange4Impl :: Fn5 Row Column Int Int Sheet (GASEff Range)
+
+foreign import setName :: String -> Sheet -> GASEff Sheet
 
 getRange2 :: Row -> Column -> Sheet -> GASEff Range
 getRange2 row col sheet = runFn3 getRange2Impl row col sheet

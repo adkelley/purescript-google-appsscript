@@ -14,8 +14,22 @@ exports.getSheetId = function (sheet) {
     }
 } //Sheet -> GASEff Int
 
-exports.getSheets = function (spreadSheet) {
+exports.getSheets = function (spreadsheet) {
     return function () {
-        return spreadSheet.getSheets();
+        return spreadsheet.getSheets();
+    }
+}
+
+exports.insertSheet = function (spreadSheet) {
+    return function () {
+        return spreadSheet.insertSheet();
+    }
+}
+
+exports.insertSheetIndex = function (index) {
+    return function (spreadSheet) {
+        return function () {
+            return spreadSheet.insertSheet(index);
+        }
     }
 }

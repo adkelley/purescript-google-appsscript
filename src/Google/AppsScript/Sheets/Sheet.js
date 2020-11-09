@@ -61,3 +61,11 @@ exports.getRange4Impl = function (r, c, rs, cs, sheet) {
         return sheet.getRange(r, c, rs, cs);
     }
 } // Fn5 Row Column Int Int Sheet (GASEff Range)
+
+exports.setName = function (name) {
+    return function (sheet) {
+        return function () {
+            return sheet.setName(name);
+        }
+    }
+}
