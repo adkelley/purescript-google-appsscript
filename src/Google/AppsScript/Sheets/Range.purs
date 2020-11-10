@@ -9,11 +9,14 @@ module Google.AppsScript.Sheets.Range
   , getNumRows
   , getRow
   , getValue
+  , setDateValue
   , setStringValue
   ) where
 
 import Data.Function.Uncurried (Fn3, runFn3)
 import Foreign (Foreign)
+import Data.JSDate (JSDate)
+
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Sheets.Types (Row, Column, Formula, Range)
 
@@ -45,7 +48,10 @@ foreign import getRow :: Range -> GASEff Row
 -- | Returns the value of the top-left cell in the range.
 foreign import getValue :: Range -> GASEff Foreign
 
+-- | Sets the value of the range. The value can be numeric, 
+-- | string, boolean or date. If it begins with '=' it is interpreted as a formula.
 foreign import setStringValue :: String -> Range -> GASEff Range
+foreign import setDateValue :: JSDate -> Range -> GASEff Range
 
 -- | Returns a given cell within a range.
 getCell :: Row -> Column -> Range -> GASEff Range

@@ -9,6 +9,7 @@ You can edit this file as you like.
   , "foreign"
   , "foreign-object"
   , "functions"
+  , "js-date"
   , "nullable"
   , "options"
   , "psci-support"

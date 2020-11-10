@@ -62,4 +62,5 @@ getRange4 row col numRows numCols sheet = runFn5 getRange4Impl row col numRows n
 
 foreign import getRange4Impl :: Fn5 Row Column Int Int Sheet (GASEff Range)
 
+-- | Sets the sheet name.
 foreign import setName :: String -> Sheet -> GASEff Sheet

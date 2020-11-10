@@ -66,4 +66,13 @@ exports.setStringValue = function (string) {
             return range.setValue(string);
         }
     }
-}
+} // String -> Range -> GASEff Range
+
+
+exports.setDateValue = function (date) {
+    return function (range) {
+        return function () {
+            return range.setValue(date);
+        }
+    }
+} // JSDate -> Range -> GASEff Range

@@ -5,6 +5,7 @@ module Google.AppsScript.Sheets.Spreadsheet
   , setActiveRange
   , insertSheet
   , insertSheetIndex
+  , setActiveSheet
   ) where
 
 import Data.Maybe (Maybe(..))
@@ -39,3 +40,7 @@ foreign import insertSheet :: Spreadsheet -> GASEff Sheet
 -- | Inserts a new sheet into the spreadsheet at the given index. 
 -- | The new sheet becomes the active sheet.
 foreign import insertSheetIndex :: Int -> Spreadsheet -> GASEff Sheet
+
+-- | Sets the given sheet to be the active sheet in the spreadsheet. The Google 
+-- | Sheets UI displays the chosen sheet unless the sheet belongs to a different spreadsheet.
+foreign import setActiveSheet :: Sheet -> Spreadsheet -> GASEff Sheet

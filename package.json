@@ -6,6 +6,7 @@
     "test": "test"
   },
   "scripts": {
+    "clean": "rimraf node_modules, .psc* .purs* .pas* .spago",
     "build": "spago build",
     "watch": "spago build -w",
     "test": "echo \"Error: no test specified\" && exit 1"

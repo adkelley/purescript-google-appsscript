@@ -33,16 +33,24 @@ exports.getSheets = function (spreadsheet) {
     }
 }
 
-exports.insertSheet = function (spreadSheet) {
+exports.insertSheet = function (spreadsheet) {
     return function () {
-        return spreadSheet.insertSheet();
+        return spreadsheet.insertSheet();
     }
 }
 
 exports.insertSheetIndex = function (index) {
-    return function (spreadSheet) {
+    return function (spreadsheet) {
         return function () {
-            return spreadSheet.insertSheet(index);
+            return spreadsheet.insertSheet(index);
+        }
+    }
+}
+
+exports.setActiveSheet = function (sheet) {
+    return function (spreadsheet) {
+        return function () {
+            return spreadsheet.setActiveSheet(sheet);
         }
     }
 }
