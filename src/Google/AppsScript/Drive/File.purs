@@ -1,4 +1,8 @@
-module Google.AppsScript.Drive.File (getId, makeCopy, setName) where
+module Google.AppsScript.Drive.File
+  ( getId
+  , makeCopy
+  , setName
+  ) where
 
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Drive.Types (File)
