@@ -2,7 +2,7 @@
 
 // SpreadsheetApp functions
 
-exports.app = function () {
+exports.spreadsheetApp = function () {
    return SpreadsheetApp;
 }
 

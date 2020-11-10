@@ -1,5 +1,5 @@
 module Google.AppsScript.Sheets.SpreadsheetApp
-  ( app
+  ( spreadsheetApp
   , getActiveRange
   , getUi
   , openById
@@ -12,7 +12,7 @@ import Google.AppsScript.Sheets.Types (Id, Range, Sheet, Spreadsheet, Spreadshee
 import Google.AppsScript.Base.Types (Ui)
 
 -- | Access and create Google Sheets files
-foreign import app :: GASEff SpreadsheetApp
+foreign import spreadsheetApp :: GASEff SpreadsheetApp
 
 -- | Returns an instance of the spreadsheet's user-interface environment that 
 -- | allows the script to add features like menus, dialogs, and sidebars.
