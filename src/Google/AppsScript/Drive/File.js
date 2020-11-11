@@ -2,7 +2,7 @@
 
 exports.getId = function (file) {
     return function () {
-        file.getId();
+        return file.getId();
     }
 } // File -> GASEff String
 
@@ -15,7 +15,7 @@ exports.makeCopy = function (file) {
 exports.setName = function (fileName) {
     return function (file) {
         return function () {
-            file.setName(fileName);
+            return file.setName(fileName);
         }
     }
 } // String -> File -> GASEff File
