@@ -14,18 +14,13 @@ exports.getSheetId = function (sheet) {
     }
 } // Sheet -> GASEff Int
 
-exports.getSheetByNameImpl = function (just) {
-    return function (nothing) {
-        return function (name) {
-            return function (spreadsheet) {
-                return function () {
-                    const sheet = spreadsheet.getSheetByName(name);
-                    return sheet !== null ? just(sheet) : nothing
-                }
-            }
+exports.getSheetByNameImpl = function (name) {
+    return function (spreadsheet) {
+        return function () {
+           return spreadsheet.getSheetByName(name);
         }
     }
-} // (Sheet -> Maybe Sheet) -> Maybe Sheet -> String -> Spreadsheet -> GASEff (Maybe Sheet)
+} // String -> Spreadsheet -> GASEff (Nullable Sheet)
 
 exports.getSheets = function (spreadsheet) {
     return function () {

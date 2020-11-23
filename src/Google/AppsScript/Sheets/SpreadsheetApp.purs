@@ -7,9 +7,13 @@ module Google.AppsScript.Sheets.SpreadsheetApp
   , getActiveSpreadsheet
   ) where
 
+import Prelude
+
+import Data.Maybe (Maybe)
+import Data.Nullable (Nullable, toMaybe)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Sheets.Types (Id, Range, Sheet, Spreadsheet, SpreadsheetApp)
 import Google.AppsScript.Base.Types (Ui)
+import Google.AppsScript.Sheets.Types (Id, Range, Sheet, Spreadsheet, SpreadsheetApp)
 
 -- | Access and create Google Sheets files
 foreign import spreadsheetApp :: GASEff SpreadsheetApp
@@ -21,14 +25,18 @@ foreign import getUi :: SpreadsheetApp -> GASEff Ui
 -- | Opens the spreadsheet with the given ID.
 foreign import openById :: Id -> SpreadsheetApp -> GASEff Sheet
 
--- | Returns the selected range in the active sheet, or null if there is no 
+foreign import getActiveRangeImpl :: Sheet -> GASEff (Nullable Range)
+
+-- | Returns the Just (selected range) in the active sheet, or Nothing if there is no 
 -- | active range.
--- | TODO: Convert the return type to GASEff (Maybe Range)
-foreign import getActiveRange :: Sheet -> GASEff Range
+getActiveRange :: Sheet -> GASEff (Maybe Range)
+getActiveRange sheet = toMaybe <$> getActiveRangeImpl sheet
+
+foreign import getActiveSpreadsheetImpl :: SpreadsheetApp -> GASEff (Nullable Spreadsheet)
 
 -- | Returns the currently active spreadsheet, or null if there is none.
--- | TODO: Convert the return type to GASEff (Maybe Spreadsheet)
-foreign import getActiveSpreadsheet :: SpreadsheetApp -> GASEff Spreadsheet
+getActiveSpreadsheet :: SpreadsheetApp -> GASEff (Maybe Spreadsheet)
+getActiveSpreadsheet app = toMaybe <$> getActiveSpreadsheetImpl app
 
 -- | Sets the specified range as the active range, with the top left cell in the 
 -- | range as the current cell.

@@ -1,4 +1,4 @@
-module Googel.AppsScript.Document.Body (replaceText) where
+module Google.AppsScript.Document.Body (replaceText) where
 
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Document.Types (Body, Element)

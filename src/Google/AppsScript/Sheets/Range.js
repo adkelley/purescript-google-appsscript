@@ -52,7 +52,13 @@ exports.getValue = function (range) {
     return function () {
         return range.getValue();
     }
-}
+} // Range -> GASEff Foreign
+
+exports.getValues = function (range) {
+	return function () {
+		return range.getValues();
+	}
+} // Range -> GASEff (Array (Array Foreign))
 
 exports.getFormula = function (range) {
     return function () {

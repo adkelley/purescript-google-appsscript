@@ -19,3 +19,4 @@ foreign import data Body :: Type
 -- | example, ListItem, Paragraph, and Table are elements and inherit all of the 
 -- | functions defined by Element, such as getType().
 foreign import data Element :: Type
+

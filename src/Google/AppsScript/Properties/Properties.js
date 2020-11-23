@@ -24,7 +24,8 @@ exports.getPropertyImpl = function (key, p) {
     return function () {
         return p.getProperty(key);
     }
-} //::String -> Properties -> GASEff String
+} //::String -> Properties -> GASEff (Nullable String)
+
 exports.setPropertiesImpl = function (props, p) {
     return function () {
         return p.setProperties(props);

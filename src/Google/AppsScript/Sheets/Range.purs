@@ -9,6 +9,7 @@ module Google.AppsScript.Sheets.Range
   , getNumRows
   , getRow
   , getValue
+  , getValues
   , setDateValue
   , setStringValue
   ) where
@@ -47,6 +48,11 @@ foreign import getRow :: Range -> GASEff Row
 
 -- | Returns the value of the top-left cell in the range.
 foreign import getValue :: Range -> GASEff Foreign
+
+-- | Returns a two-dimensional array of values, indexed by row, then by column.
+-- | The values may be of type Number, Boolean, Date, or String, depending on the value of the cell. 
+-- | Empty cells are represented by an empty string in the array. The array is indexed from [0][0].
+foreign import getValues :: Range -> GASEff (Array (Array Foreign))
 
 -- | Sets the value of the range. The value can be numeric, 
 -- | string, boolean or date. If it begins with '=' it is interpreted as a formula.

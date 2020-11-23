@@ -5,3 +5,5 @@ exports.getBody = function (document) {
         return document.getBody();
     }
 }
+
+exports.element = {};

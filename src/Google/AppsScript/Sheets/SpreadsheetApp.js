@@ -6,11 +6,11 @@ exports.spreadsheetApp = function () {
    return SpreadsheetApp;
 }
 
-exports.getActiveRange = function (sheet) {
+exports.getActiveRangeImpl = function (sheet) {
     return function () {
         return sheet.getActiveRange();
     }
-} // SpreadsheetApp -> GASEff Range
+} // SpreadsheetApp -> GASEff (Nullable Range)
 
 exports.getActiveSheet = function (app) {
     return function () {
@@ -18,11 +18,11 @@ exports.getActiveSheet = function (app) {
     }
 } // SpreadsheetApp -> GASEff Sheet
 
-exports.getActiveSpreadsheet = function (app) {
+exports.getActiveSpreadsheetImpl = function (app) {
     return function () {
         return app.getActiveSpreadsheet();
     }
-}
+} // SpreadsheetApp -> GasEff (Nullable Spreadsheet)
 
 exports.getUi = function (app) {
     return function () {

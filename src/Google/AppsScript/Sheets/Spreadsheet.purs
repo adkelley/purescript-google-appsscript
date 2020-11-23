@@ -8,23 +8,21 @@ module Google.AppsScript.Sheets.Spreadsheet
   , setActiveSheet
   ) where
 
-import Data.Maybe (Maybe(..))
+import Prelude
+
+import Data.Maybe (Maybe)
+import Data.Nullable (Nullable, toMaybe)
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Sheets.Types (Range, Sheet, Sheets, Spreadsheet)
 
 -- | Returns the ID of the sheet represented by this object.
 foreign import getSheetId :: Sheet -> GASEff Int
 
+foreign import getSheetByNameImpl :: String -> Spreadsheet -> GASEff (Nullable Sheet)
+
 -- | Returns a sheet with the given name.
 getSheetByName :: String -> Spreadsheet -> GASEff (Maybe Sheet)
-getSheetByName = getSheetByNameImpl Just Nothing
-
-foreign import getSheetByNameImpl
-  :: (Sheet -> Maybe Sheet)
-  -> Maybe Sheet
-  -> String
-  -> Spreadsheet
-  -> GASEff (Maybe Sheet)
+getSheetByName name spreadsheet = toMaybe <$> getSheetByNameImpl name spreadsheet
 
 -- | Gets all the sheets in this spreadsheet.
 foreign import getSheets :: Spreadsheet -> GASEff Sheets

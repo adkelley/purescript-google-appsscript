@@ -4,6 +4,7 @@ PureScript bindings for Google AppScript Services, such as Google Sheets, Google
 
 ## Change log
 **0.2.0**
+
 This release has several breaking changes:
 1. Restructured the modules name space to better match the Google Workspace Services and Script Services name spaces, such as `Base`, `Spreadsheet`, `Document`, and `Forms`.  For example, in 0.1.0, the module name space `Google.AppsScript.SpreadsheetApp` was transformed to `Google.AppsScript.Sheets.SpreadSheetApp` in 0.2.0. See [Google Apps Script Reference](https://developers.google.com/apps-script/reference) which shows how Google has 
 2. By adding new workspaces: (e.g., `Drive`), the `app` function has been renamed to `DriveApp`, `SpreadsheetApp`, `DocumentApp` etc.
