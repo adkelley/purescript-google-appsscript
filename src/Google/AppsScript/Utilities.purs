@@ -1,4 +1,4 @@
-module Google.AppsScript.Util
+module Google.AppsScript.Utilities
   ( encode_b64
   , decode_b64
   ) where
