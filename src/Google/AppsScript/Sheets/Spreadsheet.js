@@ -49,3 +49,11 @@ exports.setActiveSheet = function (sheet) {
         }
     }
 }
+
+exports.toastImpl = function (args) {
+    return function (spreadsheet) {
+        return function () {
+            return spreadsheet.toast(args.msg, args.title, args.timeoutSeconds)
+        }
+    }
+}

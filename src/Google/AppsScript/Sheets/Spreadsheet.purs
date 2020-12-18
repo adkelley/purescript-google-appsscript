@@ -6,6 +6,7 @@ module Google.AppsScript.Sheets.Spreadsheet
   , insertSheet
   , insertSheetIndex
   , setActiveSheet
+  , toast
   ) where
 
 import Prelude
@@ -42,3 +43,13 @@ foreign import insertSheetIndex :: Int -> Spreadsheet -> GASEff Sheet
 -- | Sets the given sheet to be the active sheet in the spreadsheet. The Google 
 -- | Sheets UI displays the chosen sheet unless the sheet belongs to a different spreadsheet.
 foreign import setActiveSheet :: Sheet -> Spreadsheet -> GASEff Sheet
+
+type ToastArgs = {msg :: String , title :: String , timeoutSeconds :: Int}
+
+-- | Shows a popup window in the lower right corner of the spreadsheet with the given message.
+foreign import toastImpl :: ToastArgs -> Spreadsheet -> GASEff Unit
+
+toast :: (ToastArgs -> ToastArgs) -> Spreadsheet -> GASEff Unit
+toast mkToastArgs spreadsheet =
+  let args = mkToastArgs { msg: "", title: "", timeoutSeconds: 5}
+  in toastImpl args spreadsheet
