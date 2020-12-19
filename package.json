@@ -1,6 +1,6 @@
 {
   "name": "purescript-google-appsscript",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Library for Google AppScript Workspace Services",
   "directories": {
     "test": "test"
@@ -25,6 +25,7 @@
   "devDependencies": {
     "purescript": "^0.13.8",
     "purty": "^6.2.0",
+    "rimraf": "^3.0.2",
     "spago": "^0.17.0"
   }
 }
