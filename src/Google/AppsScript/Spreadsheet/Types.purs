@@ -1,4 +1,4 @@
-module Google.AppsScript.Sheets.Types
+module Google.AppsScript.Spreadsheet.Types
   ( Column
   , Formula
   , Id
@@ -35,4 +35,3 @@ foreign import data Spreadsheet :: Type
 
 -- | Access and create Google Sheets files
 foreign import data SpreadsheetApp :: Type
-

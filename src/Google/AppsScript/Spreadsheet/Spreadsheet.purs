@@ -1,4 +1,4 @@
-module Google.AppsScript.Sheets.Spreadsheet
+module Google.AppsScript.Spreadsheet.Spreadsheet
   ( getSheetId
   , getSheetByName
   , getSheets
@@ -6,6 +6,7 @@ module Google.AppsScript.Sheets.Spreadsheet
   , insertSheet
   , insertSheetIndex
   , setActiveSheet
+  , ToastArgs
   , toast
   ) where
 
@@ -14,7 +15,7 @@ import Prelude
 import Data.Maybe (Maybe)
 import Data.Nullable (Nullable, toMaybe)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Sheets.Types (Range, Sheet, Sheets, Spreadsheet)
+import Google.AppsScript.Spreadsheet.Types (Range, Sheet, Sheets, Spreadsheet)
 
 -- | Returns the ID of the sheet represented by this object.
 foreign import getSheetId :: Sheet -> GASEff Int
@@ -44,6 +45,7 @@ foreign import insertSheetIndex :: Int -> Spreadsheet -> GASEff Sheet
 -- | Sheets UI displays the chosen sheet unless the sheet belongs to a different spreadsheet.
 foreign import setActiveSheet :: Sheet -> Spreadsheet -> GASEff Sheet
 
+-- | Optional arguments for the 'Spreadsheet.toast' method
 type ToastArgs = {msg :: String , title :: String , timeoutSeconds :: Int}
 
 -- | Shows a popup window in the lower right corner of the spreadsheet with the given message.

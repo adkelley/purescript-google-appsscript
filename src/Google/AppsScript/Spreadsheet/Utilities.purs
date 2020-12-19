@@ -1,4 +1,4 @@
-module Google.AppsScript.Sheets.ConvertA1 (Cell, cellA1ToIndex, showCell) where
+module Google.AppsScript.Spreadsheet.Utilities (Cell, cellA1ToIndex, showCell) where
 
 import Prelude
 

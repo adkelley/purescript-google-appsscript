@@ -1,4 +1,4 @@
-module Google.AppsScript.Sheets.Sheet
+module Google.AppsScript.Spreadsheet.Sheet
   ( activate
   , copyTo
   , getLastColumn
@@ -15,7 +15,7 @@ module Google.AppsScript.Sheets.Sheet
 
 import Data.Function.Uncurried (Fn3, Fn5, Fn4, runFn5, runFn4, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Sheets.Types (Column, Range, Row, Spreadsheet, Sheet)
+import Google.AppsScript.Spreadsheet.Types (Column, Range, Row, Spreadsheet, Sheet)
 
 -- | Activates this sheet. Does not alter the sheet itself, only the parent's 
 -- | notion of the active sheet.

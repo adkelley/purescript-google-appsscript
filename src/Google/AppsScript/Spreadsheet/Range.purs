@@ -1,4 +1,4 @@
-module Google.AppsScript.Sheets.Range
+module Google.AppsScript.Spreadsheet.Range
   ( getA1Notation
   , getCell
   , getColumn
@@ -19,7 +19,7 @@ import Foreign (Foreign)
 import Data.JSDate (JSDate)
 
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Sheets.Types (Row, Column, Formula, Range)
+import Google.AppsScript.Spreadsheet.Types (Row, Column, Formula, Range)
 
 -- | Returns a string description of the range, in A1 notation.
 foreign import getA1Notation :: Range -> GASEff String

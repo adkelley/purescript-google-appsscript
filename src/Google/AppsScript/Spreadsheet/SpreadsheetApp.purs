@@ -1,4 +1,4 @@
-module Google.AppsScript.Sheets.SpreadsheetApp
+module Google.AppsScript.Spreadsheet.SpreadsheetApp
   ( spreadsheetApp
   , getActiveRange
   , getUi
@@ -13,7 +13,7 @@ import Data.Maybe (Maybe)
 import Data.Nullable (Nullable, toMaybe)
 import Google.AppsScript.AppsScript (GASEff)
 import Google.AppsScript.Base.Types (Ui)
-import Google.AppsScript.Sheets.Types (Id, Range, Sheet, Spreadsheet, SpreadsheetApp)
+import Google.AppsScript.Spreadsheet.Types (Id, Range, Sheet, Spreadsheet, SpreadsheetApp)
 
 -- | Access and create Google Sheets files
 foreign import spreadsheetApp :: GASEff SpreadsheetApp
