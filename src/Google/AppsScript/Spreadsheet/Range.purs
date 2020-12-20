@@ -10,16 +10,17 @@ module Google.AppsScript.Spreadsheet.Range
   , getRow
   , getValue
   , getValues
-  , setDateValue
-  , setStringValue
+  , setValue
+  , ValueType(..)
+  , SetValueArg
   ) where
 
 import Data.Function.Uncurried (Fn3, runFn3)
+import Data.JSDate (JSDate, now)
+import Effect (Effect)
 import Foreign (Foreign)
-import Data.JSDate (JSDate)
-
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Spreadsheet.Types (Row, Column, Formula, Range)
+import Google.AppsScript.Spreadsheet.Types (Column, Formula, Range, Row)
 
 -- | Returns a string description of the range, in A1 notation.
 foreign import getA1Notation :: Range -> GASEff String
@@ -54,10 +55,41 @@ foreign import getValue :: Range -> GASEff Foreign
 -- | Empty cells are represented by an empty string in the array. The array is indexed from [0][0].
 foreign import getValues :: Range -> GASEff (Array (Array Foreign))
 
--- | Sets the value of the range. The value can be numeric, 
--- | string, boolean or date. If it begins with '=' it is interpreted as a formula.
-foreign import setStringValue :: String -> Range -> GASEff Range
-foreign import setDateValue :: JSDate -> Range -> GASEff Range
+data ValueType
+  = Number
+  | String
+  | Boolean
+  | Formula
+  | Date
+  | Undefined
+
+-- | The value for setValue(value) can be 
+type SetValueArg = { type_ :: ValueType
+                   , number :: Number
+                   , boolean :: Boolean
+                   , string :: String
+                   , formula :: String
+                   , date :: Effect JSDate
+                   }
+
+foreign import setValueImpl :: SetValueArg -> Range -> GASEff Range
+
+-- | Sets the value of the range. The value can be numeric, string, boolean or date.
+-- | If it begins with '=' it is interpreted as a formula. The first argument 'mkArgs' is
+-- | typically passed to 'setValue' using a partial anonyomous function. For example: i
+-- | (_ {type_ = Formula, formula = "=A1+A2"})
+setValue :: (SetValueArg -> SetValueArg) -> Range -> GASEff Range
+setValue mkArg range =
+  let arg = mkArg {type_: Undefined, boolean: false, number: 0.0
+                  , string: "", date: now, formula: ""}
+  in setValueImpl arg range
+
+--foreign import setValuesImpl :: Array (Array SetValueArg) -> Range -> GASEff Range
+
+--setValues :: (Array (Array SetValueArg) -> Array (Array SetValueArg)) -> Range -> GASEff Range
+--setValues mkArgs range =
+--  let args = 
+
 
 -- | Returns a given cell within a range.
 getCell :: Row -> Column -> Range -> GASEff Range

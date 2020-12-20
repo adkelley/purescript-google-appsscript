@@ -66,19 +66,33 @@ exports.getFormula = function (range) {
     }
 }
 
-exports.setStringValue = function (string) {
+/*
+** Using a type constructor 'SetValueArgs' to determine the type of the value argument
+** Type constructor values such as Boolean, String, are reserved keywords.  Consequently
+** The PureScript compiler prefixes them with '$$'
+*/
+exports.setValueImpl = function (value) {
     return function (range) {
         return function () {
-            return range.setValue(string);
-        }
-    }
-} // String -> Range -> GASEff Range
-
-
-exports.setDateValue = function (date) {
-    return function (range) {
-        return function () {
-            return range.setValue(date);
-        }
-    }
-} // JSDate -> Range -> GASEff Range
+            switch (value.type_.constructor.name) {
+            case "$$Boolean":
+                return range.setValue(value.boolean);
+                break;
+            case "$$Date":
+                return range.setValue(value.date());
+                break;
+            case "Formula":
+                return range.setValue(value.formula);
+                break;
+            case "$$Number":
+                return range.setValue(value.number);
+                break;
+            case "$$String":
+                return range.setValue(value.string);
+                break;
+            default:
+                return range;
+            };
+        };
+    };
+}; // SetValueArgs -> Range -> GASEff Range
