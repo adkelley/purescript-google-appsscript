@@ -7,15 +7,13 @@ module Google.AppsScript.Spreadsheet.Sheet
   , getMaxRows
   , getName
   , getRange
-  , getRange2
-  , getRange3
-  , getRange4
   , setName
+  , Notation(..)
+  , RangeArgs
   ) where
 
-import Data.Function.Uncurried (Fn3, Fn5, Fn4, runFn5, runFn4, runFn3)
 import Google.AppsScript.AppsScript (GASEff)
-import Google.AppsScript.Spreadsheet.Types (Column, Range, Row, Spreadsheet, Sheet)
+import Google.AppsScript.Spreadsheet.Types (Column, Range, Row, Sheet, Spreadsheet)
 
 -- | Activates this sheet. Does not alter the sheet itself, only the parent's 
 -- | notion of the active sheet.
@@ -40,27 +38,29 @@ foreign import getMaxRows :: Sheet -> GASEff Int
 -- | Returns the name of the sheet.
 foreign import getName :: Sheet -> GASEff String
 
-foreign import getRange :: String -> Sheet -> GASEff Range
+data Notation = R1C1 | A1 | Undefined
 
--- | Returns the range with the top left cell at the given coordinates.
-getRange2 :: Row -> Column -> Sheet -> GASEff Range
-getRange2 row col sheet = runFn3 getRange2Impl row col sheet
+type RangeArgs = { notation :: Notation
+                 , a1 :: String
+                 , row :: Int
+                 , column :: Int
+                 , numRows :: Int
+                 , numColumns :: Int
+                 }
 
-foreign import getRange2Impl :: Fn3 Row Column Sheet (GASEff Range)
+foreign import getRangeImpl :: RangeArgs -> Sheet -> GASEff Range
 
--- | Returns the range with the top left cell at the given coordinates, and with 
--- | the given number of rows.
-getRange3 :: Row -> Column -> Int -> Sheet -> GASEff Range
-getRange3 row col numRows sheet = runFn4 getRange3Impl row col numRows sheet
+-- TODO: Handle Notation = Undefined
+-- TODO: Handle minimum # of parameters must be row, column
+getRange :: (RangeArgs -> RangeArgs) -> Sheet -> GASEff Range
+getRange mkArgs sheet =
+  let args = mkArgs { notation: Undefined
+                    , a1: ""
+                    , row: 0, column: 0
+                    , numRows: 1, numColumns: 1
+                    }
+  in getRangeImpl args sheet
+  
 
-foreign import getRange3Impl :: Fn4 Row Column Int Sheet (GASEff Range)
-
--- | Returns the range with the top left cell at the given coordinates with 
--- | the given number of rows and columns.
-getRange4 :: Row -> Column -> Int -> Int -> Sheet -> GASEff Range
-getRange4 row col numRows numCols sheet = runFn5 getRange4Impl row col numRows numCols sheet
-
-foreign import getRange4Impl :: Fn5 Row Column Int Int Sheet (GASEff Range)
-
--- | Sets the sheet name.
+---- | Sets the sheet name.
 foreign import setName :: String -> Sheet -> GASEff Sheet

@@ -44,31 +44,24 @@ exports.getName = function (sheet) {
     }
 } //Sheet -> GASEff String
 
-exports.getRange = function (range) {
+exports.getRangeImpl = function (range) {
     return function (sheet) {
         return function () {
-            return sheet.getRange(range);
-        }
-    }
-} // String -> Sheet -> GASEff Range
-
-exports.getRange2Impl = function (r, c, sheet) {
-    return function () {
-        return sheet.getRange(r, c);
-    }
-} // Fn3 Row Column Sheet (GASEff Range)
-
-exports.getRange3Impl = function (r, c, rs, sheet) {
-    return function () {
-        return sheet.getRange(r, c, rs);
-    }
-} // Fn4 Row Column Int Sheet (GASEff Range)
-
-exports.getRange4Impl = function (r, c, rs, cs, sheet) {
-    return function () {
-        return sheet.getRange(r, c, rs, cs);
-    }
-} // Fn5 Row Column Int Int Sheet (GASEff Range)
+            switch (range.notation.constructor.name) {
+            case "A1":
+                return sheet.getRange(range.a1);
+                break;
+            case "R1C1":
+                return sheet.getRange( range.row, range.column
+                                     , range.numRows, range.numColumns
+                                     )
+                break;
+            default:
+                throw 'getRange: Arguments must be in A1 or R1C1 Notation'
+            };
+        };
+    };
+}; // RangeArgs -> Sheet -> GASEff Range
 
 exports.setName = function (name) {
     return function (sheet) {

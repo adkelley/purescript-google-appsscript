@@ -12,7 +12,7 @@ module Google.AppsScript.Spreadsheet.Range
   , getValues
   , setValue
   , ValueType(..)
-  , SetValueArg
+  , Value
   ) where
 
 import Data.Function.Uncurried (Fn3, runFn3)
@@ -64,29 +64,29 @@ data ValueType
   | Undefined
 
 -- | The value for setValue(value) can be 
-type SetValueArg = { type_ :: ValueType
-                   , number :: Number
-                   , boolean :: Boolean
-                   , string :: String
-                   , formula :: String
-                   , date :: Effect JSDate
-                   }
+type Value = { type_ :: ValueType
+             , number :: Number
+             , boolean :: Boolean
+             , string :: String
+             , formula :: String
+             , date :: Effect JSDate
+             }
 
-foreign import setValueImpl :: SetValueArg -> Range -> GASEff Range
+foreign import setValueImpl :: Value -> Range -> GASEff Range
 
 -- | Sets the value of the range. The value can be numeric, string, boolean or date.
 -- | If it begins with '=' it is interpreted as a formula. The first argument 'mkArgs' is
 -- | typically passed to 'setValue' using a partial anonyomous function. For example: i
 -- | (_ {type_ = Formula, formula = "=A1+A2"})
-setValue :: (SetValueArg -> SetValueArg) -> Range -> GASEff Range
+setValue :: (Value -> Value) -> Range -> GASEff Range
 setValue mkArg range =
   let arg = mkArg {type_: Undefined, boolean: false, number: 0.0
                   , string: "", date: now, formula: ""}
   in setValueImpl arg range
 
---foreign import setValuesImpl :: Array (Array SetValueArg) -> Range -> GASEff Range
+--foreign import setValuesImpl :: Array (Array Value) -> Range -> GASEff Range
 
---setValues :: (Array (Array SetValueArg) -> Array (Array SetValueArg)) -> Range -> GASEff Range
+--setValues :: (Array (Array Value) -> Array (Array Value)) -> Range -> GASEff Range
 --setValues mkArgs range =
 --  let args = 
 
