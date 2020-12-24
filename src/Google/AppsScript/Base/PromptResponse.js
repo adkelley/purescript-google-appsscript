@@ -19,5 +19,5 @@ exports.getSelectedButtonImpl = function (buttons, promptResponse, ui) {
             default:
                 return buttons[4];
         }
-        }
-}
+    };
+};
